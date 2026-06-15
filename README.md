@@ -12,54 +12,43 @@ Este repositório é o núcleo central do **NEXUS MCDM**, um ecossistema integra
 
 ---
 
-## 🌟 Recursos Principais
+## 🏛️ Racionalidades e Métodos Suportados
 
-- **Suporte a 10 Solucionadores Multicritério:**
-  - **Racionalidade Compensatória:**
-    - **SMARTS:** Elicitação direta de pesos swing e normalização de intervalo.
-    - **SMARTER:** Atribuição simplificada de pesos ordinais via centroides ROC.
-    - **AHP (Analytic Hierarchy Process):** Matrizes de comparações par a par de Saaty e análise de consistência (CR).
-    - **MACBETH:** Comparações qualitativas semânticas resolvidas por Programação Linear.
-    - **BWM (Best Worst Method):** Otimização linear minimax baseada em comparações estruturadas.
-    - **BWT (Best Worst Tradeoff):** Taxas de tradeoff inter-critério resolvidas por PL e bisseção intra-critério.
-    - **TOPSIS:** Vetores de distância euclidiana às soluções ideal e anti-ideal.
-    - **VIKOR:** Solução de compromisso ponderando utilidade de grupo e arrependimento.
-  - **Racionalidade Não-Compensatória:**
-    - **ELECTRE (TRI, I, IS, II, III, IV):** Relações de sobreclassificação baseadas em concordância, discordância e veto absoluto.
-    - **PROMETHEE (I, II, III, IV, V, VI, TRI):** Fluxos de preferências líquidos e otimização inteira de portfólio de projetos (PROMETHEE V).
-- **Importador Matriz TCC:** Permite importar planilhas Excel nos formatos `.xls`, `.xlsx` e `.csv` no layout da Matriz de Consequências do TCC (Linha 1: Critérios, Linha 2: Tipos, Linha 7: Níveis, Linha 9+: Consequências), com proteção contra valores `NaN` e `inf`.
-- **Relatório em PDF com ReportLab:** Geração em tempo real de relatórios executivos de decisão completos e paginados, com tabelas dinâmicas e logotipo do método ativo.
-- **Simulação de Monte Carlo:** Análise de robustez e estabilidade estatística do ranking sob perturbação estocástica dos dados.
+O **NEXUS MCDM** unifica as duas grandes correntes de decisão multicritério:
 
----
+### 1. Racionalidade Compensatória (Escola Americana)
+Permite a compensação de desempenhos ruins em certos critérios por excelentes desempenhos em outros.
+* **SMARTS / SMARTER**: Elicitação direta (Swing) e ordinal (Rank Order Centroid - ROC).
+* **AHP (Analytic Hierarchy Process)**: Estrutura hierárquica e julgamento de matrizes de consistência par a par ($CR < 0.10$).
+* **BWM (Best Worst Method)**: Otimização minimax linear com apenas $2n-3$ comparações.
+* **BWT (Best Worst Tradeoff)**: Combinação da otimização BWM com taxas físicas de tradeoff inter-critério.
+* **MACBETH**: Julgamentos qualitativos convertidos em escalas cardinais de utilidade através de Programação Linear.
+* **TOPSIS**: Ordenação baseada na menor distância euclidiana da solução ideal e maior distância da anti-ideal.
+* **VIKOR**: Solução de compromisso ponderando a utilidade de grupo ($S$) e o arrependimento individual ($R$).
 
-## 📂 Estrutura do Projeto
-
-```text
-sad-central-mcdm/
-├── app.py                # Servidor Flask e rotas controladoras
-├── config.py             # Configurações do app e compartilhamento do banco SQLite
-├── requirements.txt      # Dependências
-├── models/               # Modelagem do banco de dados (SQLAlchemy)
-├── modules/              # Engines matemáticas de cada resolvedor
-├── services/             # Geração de PDFs e simulação de Monte Carlo
-├── static/               # CSS customizado, JS e Logotipos da marca
-└── templates/            # Telas HTML (assistente, matrizes e resultados)
-```
+### 2. Racionalidade Não-Compensatória (Escola Francesa / Outranking)
+Impede a compensação ilimitada através de relações de sobreclassificação baseadas em concordância, discordância e limites estritos de veto.
+* **ELECTRE (I, IS, II, III, IV, TRI)**: Relações de preferência nítidas e credibilidade de sobreclassificação ($\sigma$) usando pseudo-critérios.
+* **PROMETHEE (I, II, III, IV, V, VI, TRI)**: Fluxos líquidos de preferência ($\Phi = \Phi^+ - \Phi^-$) e otimização inteira 0-1 (PROMETHEE V) para seleção de portfólios sob restrições físicas e financeiras.
 
 ---
 
-## 🚀 Como Executar
+## 🛠️ Detalhes do Desenvolvimento e Instalação
 
-### 1. Preparar Ambiente e Dependências
+### Requisitos Mínimos
+* Python 3.8 ou superior
+* Bibliotecas listadas no `requirements.txt` (Flask, Pandas, NumPy, ReportLab, OpenPyXL, XLRD)
+
+### Como rodar localmente
 ```powershell
 python -m venv .venv
-.venv\Scripts\Activate.ps1   # Windows
+.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-```
-
-### 2. Rodar o Servidor
-```powershell
 python app.py
 ```
 Acesse no navegador: `http://127.0.0.1:5000`
+
+---
+
+## 🛡️ Direitos Autorais
+Direitos Reservados © 2026 NEXUS-MCDM. Todos os direitos reservados.
