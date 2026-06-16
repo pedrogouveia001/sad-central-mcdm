@@ -1,20 +1,20 @@
-# Nexus MCDM — Central Hub de Apoio à Decisão Multicritério
+# SAD MCDM — Central Hub de Apoio à Decisão Multicritério
 
-Este repositório é o núcleo central do **NEXUS MCDM**, um ecossistema integrado de Apoio à Decisão Multicritério (MCDM) desenvolvido com Flask e SQLAlchemy para auxiliar tomadores de decisão a estruturar, avaliar e resolver problemas complexos sob racionalidades compensatórias e não-compensatórias.
+Este repositório é o núcleo central do **SAD MCDM**, um ecossistema integrado de Apoio à Decisão Multicritério (MCDM) desenvolvido com Flask e SQLAlchemy para auxiliar tomadores de decisão a estruturar, avaliar e resolver problemas complexos sob racionalidades compensatórias e não-compensatórias.
 
 ---
 
 ## 🎨 Identidade Visual e Branding
-- **Nome Oficial:** Nexus MCDM
+- **Nome Oficial:** SAD MCDM
 - **Cores Oficiais:** Roxo Real (`#8B5CF6`) e Verde Esmeralda (`#10B981`)
 - **Conceito Visual:** Rede de nós interconectados formando a letra 'N' representando sinergia, conexões e integração de múltiplos decisores e métodos.
-- **Copyright:** Direitos Reservados © 2026 NEXUS-MCDM. Todos os direitos reservados.
+- **Copyright:** Direitos Reservados © 2026 SAD-MCDM. Todos os direitos reservados.
 
 ---
 
 ## 🏛️ Racionalidades e Métodos Suportados
 
-O **NEXUS MCDM** unifica as duas grandes correntes de decisão multicritério:
+O **SAD MCDM** unifica as duas grandes correntes de decisão multicritério:
 
 ### 1. Racionalidade Compensatória (Escola Americana)
 Permite a compensação de desempenhos ruins em certos critérios por excelentes desempenhos em outros.
@@ -51,4 +51,4 @@ Acesse no navegador: `http://127.0.0.1:5000`
 ---
 
 ## 🛡️ Direitos Autorais
-Direitos Reservados © 2026 NEXUS-MCDM. Todos os direitos reservados.
+Direitos Reservados © 2026 SAD-MCDM. Todos os direitos reservados.

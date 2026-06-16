@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo — Pedro Henrique Gouveia de Souza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables & Theme Tokens */
+        :root[data-theme="dark"] {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #131b2e;
+            --bg-glass: rgba(19, 27, 46, 0.7);
+            --bg-pill: rgba(59, 130, 246, 0.1);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-primary: #3b82f6;
+            --accent-hover: #2563eb;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --accent-green: #10b981;
+            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+        }
+
+        :root[data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.8);
+            --bg-pill: rgba(59, 130, 246, 0.08);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent-primary: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-glow: rgba(37, 99, 235, 0.2);
+            --accent-green: #059669;
+            --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* Layout Container */
+        .cv-container {
+            max-width: 1100px;
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Left Sidebar (Aside) */
+        .aside {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-right: 1px solid var(--border-color);
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Right Content Area */
+        .main {
+            padding: 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* Profile Photo & Header */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .profile-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--accent-primary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .profile-location {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Sidebar Sections */
+        .aside-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .aside-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        /* Contact Details */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            word-break: break-all;
+        }
+
+        .contact-item a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-primary);
+        }
+
+        .icon {
+            width: 18px;
+            height: 18px;
+            stroke: var(--accent-primary);
+            stroke-width: 2;
+            fill: none;
+            flex-shrink: 0;
+        }
+
+        /* Skill Pills */
+        .skills-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-pill {
+            font-size: 0.75rem;
+            font-weight: 500;
+            background-color: var(--bg-pill);
+            color: var(--accent-primary);
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .skill-pill:hover {
+            background-color: var(--accent-primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--accent-glow);
+        }
+
+        /* Right Content Sections */
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-color);
+            margin-left: 1rem;
+        }
+
+        .profile-summary {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        /* Timelines and Experience Blocks */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--bg-secondary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+        }
+
+        .timeline-item:hover::before {
+            background-color: var(--accent-primary);
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 0.4rem;
+            gap: 0.5rem;
+        }
+
+        .timeline-role {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .timeline-company {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--accent-primary);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            background-color: var(--bg-pill);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .timeline-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: 0.3rem;
+            text-align: justify;
+        }
+
+        .timeline-sub-list {
+            margin-left: 1rem;
+            margin-top: 0.4rem;
+            list-style-type: square;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        /* Software / Patent Blocks */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.01);
+            padding: 1.2rem;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--card-shadow);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #ffffff;
+            background-color: var(--accent-green);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .project-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        /* Publications */
+        .publication-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pub-item {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .pub-item::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+        }
+
+        .pub-author-highlight {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .pub-title {
+            font-style: italic;
+        }
+
+        .pub-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            margin-left: 0.3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+
+        .pub-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Controls / Buttons (Sticky bar at top right) */
+        .control-bar {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            display: flex;
+            gap: 0.75rem;
+            z-index: 100;
+        }
+
+        .btn {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.6rem 1.2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 6px 16px var(--accent-glow);
+        }
+
+        .btn-primary {
+            background-color: var(--accent-primary);
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        /* Responsive Layout adjustments */
+        @media (max-width: 900px) {
+            .cv-container {
+                grid-template-columns: 1fr;
+            }
+            .aside {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 2rem;
+            }
+            .main {
+                padding: 2rem;
+            }
+            .control-bar {
+                position: static;
+                margin-bottom: 1rem;
+                justify-content: flex-end;
+                width: 100%;
+                max-width: 1100px;
+            }
+            body {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* PRINT STYLESHEET (Optimize for A4 PDF conversion) */
+        @media print {
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                display: block !important;
+            }
+
+            .control-bar {
+                display: none !important;
+            }
+
+            .cv-container {
+                border: none !important;
+                box-shadow: none !important;
+                background: #ffffff !important;
+                grid-template-columns: 240px 1fr !important;
+                max-width: 100% !important;
+                border-radius: 0 !important;
+            }
+
+            .aside {
+                background-color: #f8fafc !important;
+                border-right: 1px solid #e2e8f0 !important;
+                padding: 1.5rem 1rem !important;
+            }
+
+            .main {
+                padding: 1.5rem 1.5rem 1.5rem 2rem !important;
+                gap: 1.8rem !important;
+            }
+
+            .profile-name {
+                background: none !important;
+                -webkit-text-fill-color: initial !important;
+                color: #0f172a !important;
+                font-size: 1.6rem !important;
+            }
+
+            .profile-title {
+                color: #2563eb !important;
+                font-size: 0.9rem !important;
+            }
+
+            .aside-title {
+                border-bottom: 2px solid #2563eb !important;
+                color: #0f172a !important;
+                font-size: 0.95rem !important;
+            }
+
+            .section-title {
+                color: #0f172a !important;
+                font-size: 1.15rem !important;
+            }
+
+            .section-title::after {
+                background-color: #cbd5e1 !important;
+            }
+
+            .skill-pill {
+                background: none !important;
+                border: 1px solid #cbd5e1 !important;
+                color: #334155 !important;
+                padding: 0.2rem 0.4rem !important;
+                font-size: 0.7rem !important;
+            }
+
+            .timeline-role {
+                color: #0f172a !important;
+                font-size: 0.95rem !important;
+            }
+
+            .timeline-company {
+                color: #2563eb !important;
+                font-size: 0.85rem !important;
+            }
+
+            .timeline-date {
+                background: none !important;
+                color: #64748b !important;
+                border: 1px solid #e2e8f0 !important;
+                font-size: 0.75rem !important;
+            }
+
+            .timeline-desc, .profile-summary, .pub-item, .project-desc {
+                color: #334155 !important;
+                font-size: 0.8rem !important;
+            }
+
+            .project-card {
+                border: 1px solid #e2e8f0 !important;
+                background: none !important;
+                padding: 0.8rem !important;
+            }
+
+            .project-badge {
+                background-color: #059669 !important;
+                color: #ffffff !important;
+                border: none !important;
+                font-size: 0.65rem !important;
+            }
+
+            .pub-author-highlight {
+                color: #0f172a !important;
+            }
+
+            /* Page-break control rules */
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .timeline-item {
+                page-break-inside: avoid;
+            }
+
+            .project-card {
+                page-break-inside: avoid;
+            }
+
+            .pub-item {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Upper Control Bar -->
+    <div class="control-bar">
+        <button class="btn" id="theme-toggle" title="Alternar Modo Claro/Escuro">
+            <svg class="icon" style="stroke: var(--text-primary)" viewBox="0 0 24 24"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m11.32 11.32l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+            Tema
+        </button>
+        <button class="btn btn-primary" onclick="window.print()" title="Salvar como PDF / Imprimir">
+            <svg class="icon" style="stroke: #ffffff" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4"/></svg>
+            Imprimir / PDF
+        </button>
+    </div>
+
+    <!-- CV Container -->
+    <div class="cv-container">
+        
+        <!-- Sidebar -->
+        <aside class="aside">
+            <div class="profile-header">
+                <h1 class="profile-name">Pedro Henrique Gouveia de Souza</h1>
+                <p class="profile-title">Engenheiro de Produção & Pesquisador</p>
+                <div class="profile-location">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a8 8 0 00-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 00-8-8zM12 13a3 3 0 110-6 3 3 0 010 6z"/></svg>
+                    Recife, PE, Brasil
+                </div>
+            </div>
+
+            <div class="aside-section">
+                <h2 class="aside-title">Contato</h2>
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <a href="mailto:pedrogouveia001@gmail.com">pedrogouveia001@gmail.com</a>
+                    </li>
+                    <li class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        <a href="mailto:pedro.henriquegouveia@ufpe.br">pedro.henriquegouveia@ufpe.br</a>
+                    </li>
+                    <li class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        <span>(81) 98545-5028 / (81) 99994-7874</span>
+                    </li>
+                    <li class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 2a2 2 0 110 4 2 2 0 010-4z"/></svg>
+                        <a href="https://www.linkedin.com/in/pedro-gouveia-7b81471b8" target="_blank">linkedin.com/in/pedro-gouveia</a>
+                    </li>
+                    <li class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+                        <a href="https://github.com/pedrogouveia001" target="_blank">github.com/pedrogouveia001</a>
+                    </li>
+                    <li class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <a href="https://lattes.cnpq.br/1157521587429656" target="_blank">lattes.cnpq.br/1157521587429656</a>
+                    </li>
+                    <li class="contact-item">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16z"/></svg>
+                        <a href="https://orcid.org/0009-0009-2519-5725" target="_blank">orcid.org/0009-0009-2519-5725</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="aside-section">
+                <h2 class="aside-title">Competências</h2>
+                <div class="skills-group">
+                    <span class="skill-pill">Pesquisa Operacional</span>
+                    <span class="skill-pill">MCDM/A (Apoio Multicritério)</span>
+                    <span class="skill-pill">Otimização Linear/Inteira</span>
+                    <span class="skill-pill">FITradeoff</span>
+                    <span class="skill-pill">Sistemas de Apoio à Decisão (SAD)</span>
+                    <span class="skill-pill">Análise de Sensibilidade</span>
+                    <span class="skill-pill">Modelagem de Preferências</span>
+                </div>
+            </div>
+
+            <div class="aside-section">
+                <h2 class="aside-title">Linguagens & Tech</h2>
+                <div class="skills-group">
+                    <span class="skill-pill">Python (Avançado)</span>
+                    <span class="skill-pill">Delphi / Object Pascal</span>
+                    <span class="skill-pill">SQL (PostgreSQL / MySQL)</span>
+                    <span class="skill-pill">Pandas / NumPy / SciPy</span>
+                    <span class="skill-pill">Flask</span>
+                    <span class="skill-pill">HTML / CSS</span>
+                    <span class="skill-pill">JavaScript</span>
+                    <span class="skill-pill">Git / GitHub</span>
+                </div>
+            </div>
+
+            <div class="aside-section">
+                <h2 class="aside-title">Idiomas</h2>
+                <ul class="contact-list" style="gap: 0.5rem;">
+                    <li class="contact-item" style="justify-content: space-between;">
+                        <span>Português</span>
+                        <strong style="color: var(--text-primary)">Nativo</strong>
+                    </li>
+                    <li class="contact-item" style="justify-content: space-between;">
+                        <span>Inglês</span>
+                        <strong style="color: var(--text-primary)">Avançado (Leitura)</strong>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Profile Section -->
+            <section class="section">
+                <h2 class="section-title">Perfil Profissional</h2>
+                <p class="profile-summary">
+                    Engenheiro de Produção (UFPE) e Mestrando em Engenharia de Produção no PPGEP-UFPE, atuando na linha de <strong>Pesquisa Operacional</strong>. Atua como Engenheiro de Software e Pesquisador no <strong>CDSID</strong> (Centro de Desenvolvimento de Sistemas de Informação e Decisão), acumulando mais de 4 anos de experiência prática na arquitetura, modelagem e codificação de <strong>Sistemas de Apoio à Decisão (SAD)</strong>. Especialista no desenvolvimento de solvers baseados em algoritmos multicritério (MCDM/A), análise de sensibilidade e programação científica. Coautor de software com patente registrada no INPI (FITradeoff-CB-HE) e autor de publicações científicas internacionais chanceladas pela Springer Nature.
+                </p>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section">
+                <h2 class="section-title">Formação Acadêmica</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Mestrado em Engenharia de Produção (M.Sc.)</span>
+                            <span class="timeline-date">2026 - Presente</span>
+                        </div>
+                        <div class="timeline-company">Universidade Federal de Pernambuco (UFPE)</div>
+                        <p class="timeline-desc">
+                            Linha de pesquisa em Pesquisa Operacional e Tomada de Decisão Multicritério. Orientadora: Profª. Drª. Eduarda Asfora Frej. Bolsista CAPES (Demanda Social).
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Graduação em Engenharia de Produção</span>
+                            <span class="timeline-date">2021 - 2025</span>
+                        </div>
+                        <div class="timeline-company">Universidade Federal de Pernambuco (UFPE)</div>
+                        <p class="timeline-desc">
+                            TCC: <em>Aplicação do FITradeoff para Análise de Investimentos no Setor Bancário</em>. Orientadora: Profª. Drª. Eduarda Asfora Frej.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Ensino Profissional Técnico em Mecânica</span>
+                            <span class="timeline-date">2017 - 2022</span>
+                        </div>
+                        <div class="timeline-company">Instituto Federal de Pernambuco (IFPE) - Campus Recife</div>
+                        <p class="timeline-desc">
+                            Foco em processos industriais de calibração, toleranciamento dimensional e metrologia com desenvolvimento complementar de algoritmos numéricos.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Work Experience Section -->
+            <section class="section">
+                <h2 class="section-title">Experiência e Pesquisa</h2>
+                <div class="timeline">
+                    <!-- CDSID -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Engenheiro de Software & Pesquisador</span>
+                            <span class="timeline-date">Fev 2022 - Presente</span>
+                        </div>
+                        <div class="timeline-company">Centro de Desenvolvimento de Sistemas de Informação e Decisão (CDSID)</div>
+                        <p class="timeline-desc">
+                            Atuação na engenharia e modelagem matemática de sistemas voltados à resolução de problemas complexos de decisão.
+                        </p>
+                        <ul class="timeline-sub-list">
+                            <li>Modelagem e implementação de resolvedores matemáticos (solvers) para métodos como AHP, BWM, BWT, MACBETH, TOPSIS, VIKOR, ELECTRE e PROMETHEE.</li>
+                            <li>Arquitetura web utilizando Python (Flask), bibliotecas científicas (NumPy, Pandas, SciPy), e automação de relatórios industriais dinâmicos em PDF.</li>
+                            <li>Modelagem de banco de dados estruturado relacionais (PostgreSQL, MySQL, SQLite) e mapeamento objeto-relacional com SQLAlchemy.</li>
+                        </ul>
+                    </div>
+
+                    <!-- CNPq UFPE -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Bolsista de Iniciação Científica (PIBIC/CNPq)</span>
+                            <span class="timeline-date">Set 2022 - Jan 2026</span>
+                        </div>
+                        <div class="timeline-company">Conselho Nacional de Desenvolvimento Científico e Tecnológico (CNPq / UFPE)</div>
+                        <p class="timeline-desc">
+                            Pesquisas aplicadas focadas no aprimoramento do método FITradeoff sob orientação da Profª Eduarda Asfora Frej:
+                        </p>
+                        <ul class="timeline-sub-list">
+                            <li>Desenvolvimento de modelos matemáticos e algoritmos de Programação Linear para otimizar a elicitação interativa de preferências com informação parcial.</li>
+                            <li>Implementação de abordagens visuais de análise de sensibilidade e estabilidade.</li>
+                            <li>Elaboração de artigos científicos e prototipação de softwares voltados à decisão multicritério.</li>
+                        </ul>
+                    </div>
+
+                    <!-- CNPq IFPE -->
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <span class="timeline-role">Bolsista de Iniciação Científica Júnior (PIBIC-Jr)</span>
+                            <span class="timeline-date">Ago 2020 - Set 2021</span>
+                        </div>
+                        <div class="timeline-company">Instituto Federal de Pernambuco (IFPE)</div>
+                        <p class="timeline-desc">
+                            Projeto: "Desenvolvimento de Método Otimizado para Determinação de Intervalos de Calibração de Padrões Metrológicos", sob orientação do Prof. Antônio Marcos F. Soares.
+                        </p>
+                        <ul class="timeline-sub-list">
+                            <li>Desenvolvimento do módulo de ajuste automático de intervalo pelo Método A4 no software CALIBRAINTER.</li>
+                            <li>Aplicação experimental em uma célula de torque com modelo numérico programado para otimização de custos e confiabilidade.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Software Registry & Projects Section -->
+            <section class="section">
+                <h2 class="section-title">Registro de Software & Projetos</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">
+                                <svg class="icon" style="stroke: var(--accent-green)" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                FITradeoff-CB-HE
+                            </span>
+                            <span class="project-badge">Registro INPI</span>
+                        </div>
+                        <p class="project-desc">
+                            <strong>Registro nº BR512025006292-3 (02/12/2025)</strong>. Software de suporte à decisão para seleção de portfólio de projetos baseado na abordagem de razão custo-benefício (Benefit-to-cost ratio) dentro do método FITradeoff, integrando elicitação flexível por decomposição e avaliação holística.
+                        </p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <span class="project-title">
+                                <svg class="icon" viewBox="0 0 24 24"><path d="M16.5 9.4 7.55 4.24a1.79 1.79 0 0 0-2.5 1.55v12.42a1.79 1.79 0 0 0 2.5 1.55l8.95-5.16a1.79 1.79 0 0 0 0-3.1Z"/></svg>
+                                Ecossistema Computacional SAD MCDM
+                            </span>
+                            <span class="project-badge" style="background-color: var(--accent-primary)">GitHub</span>
+                        </div>
+                        <p class="project-desc">
+                            Conjunto unificado composto de um hub gerencial e 9 resolvedores matemáticos independentes integrando os principais métodos multicritério (AHP, BWM, BWT, MACBETH, TOPSIS, VIKOR, ELECTRE, PROMETHEE e SMARTS/SMARTER). Desenvolvido sob arquitetura limpa em Python e Flask.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications Section -->
+            <section class="section">
+                <h2 class="section-title">Produção Bibliográfica</h2>
+                <div class="publication-list">
+                    <!-- Cap -->
+                    <div class="pub-item">
+                        <span class="pub-author-highlight">de Souza, P. H. G.</span>; Monteiro, N. J.; da Costa, S. E. G.; Frej, E. A. (2025). <strong>Selection of Digital Technologies for Energy Management: A Group Decision Approach Based on PROMETHEE-ROC</strong>. In: <em>Lecture Notes in Business Information Processing</em>, Springer Nature Switzerland, p. 53-67.
+                        <a href="https://link.springer.com/10.1007/978-3-031-95221-0_4" target="_blank" class="pub-link">
+                            DOI: 10.1007/978-3-031-95221-0_4
+                        </a>
+                    </div>
+                    <!-- Artigo -->
+                    <div class="pub-item">
+                        <span class="pub-author-highlight">SOUZA, P. H. G.</span>; OLIVEIRA, C. A. N.; OLIVEIRA, J. E. F.; OLIVEIRA, E. J. A.; SILVA, N. G. et al. (2021). <strong>Aplicação dos métodos A1, A2 e do método da resposta incremental para ajuste de intervalos de calibração</strong>. *Brazilian Journal of Development*, v. 7, p. 73323-73340.
+                        <a href="https://doi.org/10.34117/bjdv7n7-487" target="_blank" class="pub-link">
+                            DOI: 10.34117/bjdv7n7-487
+                        </a>
+                    </div>
+                    <!-- Anais 1 -->
+                    <div class="pub-item">
+                        Frej, E. A.; <span class="pub-author-highlight">SOUZA, P. H. G.</span>; Gouveia, W. F.; de Almeida, A. T. (2024). <strong>A Structured Protocol for Sensitivity Analysis in the Fitradeoff Method</strong>. In: <em>INFORMS Annual Meeting 2024</em>, Seattle, EUA.
+                    </div>
+                    <!-- Anais 2 -->
+                    <div class="pub-item">
+                        Frej, E. A.; <span class="pub-author-highlight">SOUZA, P. H. G.</span>; Gouveia, W. F.; de Almeida, A. T. (2024). <strong>Sensitivity Analysis Under Partial Information: A Structured Protocol for the FITradeoff Multicriteria Method</strong>. In: <em>27th International Conference on Multiple Criteria Decision Making (MCDM2024)</em>, Hammamet, Tunísia.
+                    </div>
+                    <!-- SBPO 2024 -->
+                    <div class="pub-item">
+                        <span class="pub-author-highlight">SOUZA, P. H. G.</span>; Frej, E. A. (2024). <strong>Incorporação da Avaliação Holística ao Processo de Elicitação Flexível para a Problemática de Classificação do Método FITradeoff</strong>. In: <em>LVI Simpósio Brasileiro de Pesquisa Operacional (SBPO 2024)</em>, Fortaleza, CE.
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Simple light/dark theme toggle
+        const toggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Load stored theme or default to dark
+        const storedTheme = localStorage.getItem('theme') || 'dark';
+        htmlElement.setAttribute('data-theme', storedTheme);
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>
